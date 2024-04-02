@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const ProductCard = ({ product, cartID, createCart, updateCart, setCartContents }) => {
+const ProductCard = ({ product, cartID, createCart, updateCart, setCartContents, setTotal }) => {
   const name = product.title;
   const images = product.images;
   const price = product.price;
@@ -10,7 +10,9 @@ const ProductCard = ({ product, cartID, createCart, updateCart, setCartContents 
   const ID = product.id;
 
   const [quantity, setQuantity] = useState(0);
+
   const handleClick = () => {
+    setTotal((prevState) => prevState + price);
     setQuantity(quantity + 1);
     setCartContents((prevState) => ([
         ...prevState,
@@ -31,7 +33,7 @@ const ProductCard = ({ product, cartID, createCart, updateCart, setCartContents 
   return (
     <div className="w-[300px] h-[550px] flex flex-col justify-between rounded-md overflow-hidden shadow-sm relative text-center">
       <div className="bg-slate-800 p-4 justify-between items-center">
-        <h3 className="font-bold text-white text-lg">{price}$</h3>
+        <h3 className="font-bold text-white text-lg"><h3></h3>${price}</h3>
       </div>
       <img
         src={images[0]}
