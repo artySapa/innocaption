@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const ProductCart = ({product, deleteFromCart}) => {
+const ProductCart = ({product, deleteFromCart, quantity, setQuantity}) => {
     const name = product.title;
     const images = product.images;
     const price = product.price;
@@ -10,6 +10,9 @@ const ProductCart = ({product, deleteFromCart}) => {
     const ID = product.id;
 
     const handleDelete = async () => {
+        let tempQuantity = quantity;
+        tempQuantity[ID] -= 1;
+        setQuantity(tempQuantity);
         deleteFromCart(ID, product);
     }
 

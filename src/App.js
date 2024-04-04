@@ -16,6 +16,8 @@ function App() {
 
   const [cart, setCart] = useState({});
 
+  const [quantity, setQuantity] = useState({}); // [item: quantity]
+
   const colors = ["text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2", 
                   "text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2",
                   "text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2",
@@ -190,7 +192,7 @@ function App() {
       <h1 className="max-w-md mx-auto mb-10 mt-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white text-center">
         Shop items
       </h1>
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto">   
+      <form onSubmit={handleSubmit} className="max-w-md mx-auto mb-2">   
     <label for="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
     <div className="relative">
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -229,6 +231,8 @@ function App() {
                   updateCart={updateCart}
                   setCartContents={setCartContents}
                   setTotal={setTotal}
+                  quantity={quantity}
+                  setQuantity={setQuantity}
                 />
               </div>
             </div>
@@ -263,6 +267,8 @@ function App() {
             updateCart={updateCart}
             setTotal={setTotal}
             total={total}
+            quantity={quantity}
+            setQuantity={setQuantity}
           />
         )}
       </div>

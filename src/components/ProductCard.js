@@ -2,18 +2,24 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const ProductCard = ({ product, cartID, createCart, updateCart, setCartContents, setTotal }) => {
+const ProductCard = ({ product, cartID, createCart, updateCart, setCartContents, setTotal, quantity, setQuantity }) => {
   const name = product.title;
   const images = product.images;
   const price = product.price;
   const category = product.category;
   const ID = product.id;
 
-  const [quantity, setQuantity] = useState(0);
+  // const [quantity, setQuantity] = useState(0);
 
   const handleClick = () => {
     setTotal((prevState) => prevState + price);
-    setQuantity(quantity + 1);
+    let tempQuantity = quantity;
+    if (tempQuantity.hasOwnProperty(ID)) {
+        tempQuantity[ID]++;
+    } else {
+        tempQuantity[ID] = 1;
+    }
+    setQuantity(tempQuantity);
     setCartContents((prevState) => ([
         ...prevState,
         product
@@ -46,12 +52,12 @@ const ProductCard = ({ product, cartID, createCart, updateCart, setCartContents,
         <div className="relative py-1 cursor-pointer" onClick={handleClick}>
           <div className="t-0 absolute right-3">
             {
-                quantity > 0
+                quantity[ID] > 0
                 && 
-                <p className="flex h-2 w-2 items-center justify-center rounded-full bg-green-500 p-3 text-xs text-white">{quantity}</p>
+                <p className="flex h-2 w-2 items-center justify-center rounded-full bg-green-500 p-3 text-xs text-white">{quantity[ID]}</p>
             }
             {
-                !(quantity > 0)
+                !(quantity[ID] > 0)
                 && 
                 <p className="flex h-2 w-2 items-center justify-center rounded-full bg-green-500 p-3 text-xs text-white">+</p>
             }

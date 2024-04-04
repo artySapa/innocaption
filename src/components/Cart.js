@@ -4,7 +4,7 @@ import axios from "axios";
 import ProductCart from "./ProductCart";
 
 
-const Cart = ({ contents, setCartContents, setExpanded, updateCart, deleteFromCart, total, setTotal }) => {
+const Cart = ({ contents, setCartContents, setExpanded, updateCart, deleteFromCart, total, setTotal, quantity, setQuantity }) => {
     // const [display, setDisplay] = useState([]);
 
     // const getContents = () => {
@@ -38,7 +38,8 @@ const Cart = ({ contents, setCartContents, setExpanded, updateCart, deleteFromCa
             return (
                 <div key={index}>
                 <div>
-                    <ProductCart product={content} deleteFromCart={deleteFromCart}/>
+                    <ProductCart product={content} deleteFromCart={deleteFromCart} quantity={quantity}
+                  setQuantity={setQuantity}/>
                 </div>
                 </div>
             );
