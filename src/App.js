@@ -211,7 +211,7 @@ function App() {
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <svg
               className="w-4 h-4 text-gray-500 dark:text-gray-400"
-              ariaHidden="true"
+              aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 20 20"
@@ -267,13 +267,13 @@ function App() {
         </button>
       </div>
 
-      <div className="inline-grid gap-6 ml-[4%] place-items-center grid-cols-4 w-[90%]">
+      <div className="inline-grid gap-6 ml-[4%] place-items-center grid-cols-4 w-[90%] mb-[5%]">
         {products.map((product, index) => {
           // Convert timestamp to localized date and time string
-          //Add a component that would be cards for products
+          // Add a component that would be cards for products
           return (
             <div key={index}>
-              <div>
+              
                 <ProductCard
                   product={product}
                   cartID={cartID}
@@ -284,10 +284,11 @@ function App() {
                   quantity={quantity}
                   setQuantity={setQuantity}
                 />
-              </div>
+              
             </div>
           );
         })}
+        </div>
         <div className="fixed bottom-0 w-full">
           <button className="bottom-0 my-8 float-right px-5 py-2 bg-red-500 text-white text-lg font-bold tracking-wide rounded-full focus:outline-none">
             <svg
@@ -321,7 +322,7 @@ function App() {
             setQuantity={setQuantity}
           />
         )}
-      </div>
+      
     </>
   );
 }

@@ -39,7 +39,7 @@ const ProductCard = ({
     <div className="w-[300px] h-[550px] flex flex-col justify-between rounded-md overflow-hidden shadow-sm relative text-center">
       <div className="bg-slate-800 p-4 justify-between items-center">
         <h3 className="font-bold text-white text-lg">
-          <h3></h3>${price}
+          ${price}
         </h3>
       </div>
       <img

@@ -33,7 +33,7 @@ const Cart = ({
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              ariaHidden="true"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -46,7 +46,7 @@ const Cart = ({
         </div>
         <h2 className="m-20 mb-0 font-bold text-white text-3xl">Cart</h2>
         <h2 className="flex m-20 mt-1 text-white text-small">
-          Total:<h2 className="ml-2 font-bold text-white text-xl">${total}</h2>
+          Total:<h1 className="ml-2 font-bold text-white text-xl">${total}</h1>
         </h2>
         {setContents.length === 0 && (
           <h2 className="m-20 font-bold text-white text-lg">
