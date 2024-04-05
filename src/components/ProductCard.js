@@ -1,45 +1,46 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
 
-const ProductCard = ({ product, cartID, createCart, updateCart, setCartContents, setTotal, quantity, setQuantity }) => {
+const ProductCard = ({
+  product,
+  cartID,
+  createCart,
+  setCartContents,
+  setTotal,
+  quantity,
+  updateCart,
+  setQuantity,
+}) => {
   const name = product.title;
   const images = product.images;
   const price = product.price;
   const category = product.category;
   const ID = product.id;
 
-  // const [quantity, setQuantity] = useState(0);
-
   const handleClick = () => {
     setTotal((prevState) => prevState + price);
     let tempQuantity = quantity;
     if (tempQuantity.hasOwnProperty(ID)) {
-        tempQuantity[ID]++;
+      tempQuantity[ID]++;
     } else {
-        tempQuantity[ID] = 1;
+      tempQuantity[ID] = 1;
     }
     setQuantity(tempQuantity);
-    setCartContents((prevState) => ([
-        ...prevState,
-        product
-    ]));
-    if(cartID !== null){
-        console.log("Updating cart", cartID);
-        updateCart(ID);
+    setCartContents((prevState) => [...prevState, product]);
+    if (cartID !== null) {
+      console.log("Updating cart", cartID);
+      //updateCart(ID);
+    } else {
+      console.log("Creating a new cart");
+      createCart(ID);
     }
-    else{
-        console.log("Creating a new cart");
-        createCart(ID);
-    }
-  }
-//   createEmptyCart();
-//   console.log(cartID, "<=========");
-  //useEffect(()=>{console.log(cartID)}, [cartID]);
+  };
+
   return (
     <div className="w-[300px] h-[550px] flex flex-col justify-between rounded-md overflow-hidden shadow-sm relative text-center">
       <div className="bg-slate-800 p-4 justify-between items-center">
-        <h3 className="font-bold text-white text-lg"><h3></h3>${price}</h3>
+        <h3 className="font-bold text-white text-lg">
+          <h3></h3>${price}
+        </h3>
       </div>
       <img
         src={images[0]}
@@ -51,16 +52,16 @@ const ProductCard = ({ product, cartID, createCart, updateCart, setCartContents,
         <h3 className="font-bold text-white text-lg">{name}</h3>
         <div className="relative py-1 cursor-pointer" onClick={handleClick}>
           <div className="t-0 absolute right-3">
-            {
-                quantity[ID] > 0
-                && 
-                <p className="flex h-2 w-2 items-center justify-center rounded-full bg-green-500 p-3 text-xs text-white">{quantity[ID]}</p>
-            }
-            {
-                !(quantity[ID] > 0)
-                && 
-                <p className="flex h-2 w-2 items-center justify-center rounded-full bg-green-500 p-3 text-xs text-white">+</p>
-            }
+            {quantity[ID] > 0 && (
+              <p className="flex h-2 w-2 items-center justify-center rounded-full bg-green-500 p-3 text-xs text-white">
+                {quantity[ID]}
+              </p>
+            )}
+            {!(quantity[ID] > 0) && (
+              <p className="flex h-2 w-2 items-center justify-center rounded-full bg-green-500 p-3 text-xs text-white">
+                +
+              </p>
+            )}
           </div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
